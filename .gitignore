@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+.env
+*.egg-info/
+dist/
+build/
+gpu_stress_report_*.json
+llm_parallel_report_*.json
+.DS_Store
