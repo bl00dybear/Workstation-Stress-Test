@@ -1,0 +1,46 @@
+[project]
+name = "workstation-stress-test"
+version = "0.1.0"
+description = "GPU stress test suite for 2x NVIDIA RTX A2000 12GB — compute, VRAM, bandwidth, and LLM parallelism benchmarks"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "torch>=2.1.0",
+    "torchvision>=0.16.0",
+    "transformers>=4.40.0",
+    "accelerate>=0.30.0",
+    "sentencepiece>=0.1.99",
+    "protobuf>=3.20.0",
+    "pynvml>=11.0.0",
+]
+
+[project.scripts]
+gpu-stress       = "gpu_full_stress:main"
+gpu-stress-v2    = "gpu_full_stress_v2:main"
+gpu-monitor      = "gpu_monitor:main"
+gpu-compute      = "gpu_stress_compute:run_stress"
+gpu-vram         = "gpu_stress_vram:run_vram_stress"
+llm-parallel     = "llm_model_parallel:main"
+
+[tool.uv]
+index-url = "https://pypi.org/simple"
+
+[[tool.uv.index]]
+name = "pytorch-cu121"
+url = "https://download.pytorch.org/whl/cu121"
+explicit = true
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cu121" },
+]
+torchvision = [
+    { index = "pytorch-cu121" },
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
