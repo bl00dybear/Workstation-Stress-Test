@@ -8,7 +8,10 @@ fi
 
 echo ">>> uv $(uv --version)"
 
-uv sync --no-install-project
+PYTHON_VERSION="3.12"
+echo ">>> ensuring Python ${PYTHON_VERSION} for torch/torchvision CUDA wheels"
+uv python install "${PYTHON_VERSION}"
+uv sync --python "${PYTHON_VERSION}" --no-install-project
 
 uv run python -c "
 import torch, sys

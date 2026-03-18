@@ -3,7 +3,7 @@ name = "workstation-stress-test"
 version = "0.1.0"
 description = "GPU stress test suite for 2x NVIDIA RTX A2000 12GB — compute, VRAM, bandwidth, and LLM parallelism benchmarks"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.9,<3.13"
 dependencies = [
     "torch>=2.1.0",
     "torchvision>=0.16.0",
